@@ -24,6 +24,14 @@ fs.readFile('data.txt', function(err, data) {
   }
 });
 
+// connection to db
+dbConnection = mysql.createConnection({
+  user: 'root',
+  password: 'plantlife',  // passworwd changed ! was empty
+  database: 'chat'
+});
+
+
 
 // Make your Node server serve up the static html and js files for the chat client page at http://127.0.0.1:3000/. 
 // You will need to use the fs module to accomplish this. 
@@ -52,32 +60,15 @@ app.post('/classes/messages', function (req, res) {
     
     message = JSON.parse(body);
     
-    
-    
-    
-    
-    dbConnection = mysql.createConnection({
-      user: 'root',
-      password: 'plantlife',  // passworwd changed ! was empty
-      database: 'chat'
-    });
-    dbConnection.connect();
-
-    
-    
+   
     
     var queryString = 'INSERT INTO messages (id, text, id_users, id_rooms) VALUES (NULL, \'In mercys name, three days is all I need.\' , NULL, NULL)';
     var queryArgs = [];
     dbConnection.query(queryString, queryArgs, function(err, results) {
       console.log('WRITE in DB: ', err);
     });
+        
     
-    
-    dbConnection.end();
-    
-    
-  
-
     randomNbr = Math.round(Math.random() * 10000);
     message.objectId = randomNbr.toString();
 

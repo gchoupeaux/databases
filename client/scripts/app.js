@@ -37,7 +37,7 @@ var app = {
   },
 
   send: function(message) {
-    app.startSpinner();
+    //app.startSpinner();
     // POST the message to the server
     $.ajax({
       url: app.server,
@@ -204,7 +204,7 @@ var app = {
         app.$roomSelect.val(roomname);
       }
     } else {
-      app.startSpinner();
+      //app.startSpinner();
       // Store as undefined for empty names
       app.roomname = app.$roomSelect.val();
     }
